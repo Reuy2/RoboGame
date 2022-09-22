@@ -939,6 +939,14 @@ PrefabInstance:
       propertyPath: _xMaxSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6455875534976712563, guid: e02853186727371448afd2537377b985, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455875534976712563, guid: e02853186727371448afd2537377b985, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6455875534976712572, guid: e02853186727371448afd2537377b985, type: 3}
       propertyPath: m_Radius
       value: 0.43671677

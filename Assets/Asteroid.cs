@@ -50,7 +50,13 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag.Equals("Asteroid"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
     public void SetSpeedX(float speed)
     {
         _rb.velocity = new Vector2(speed, 0);
