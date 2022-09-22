@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveControl : MonoBehaviour
 {
-    float speedUp = 0;
+    //float speedUp = 0;
     float angle = 0;
 
     
@@ -23,7 +23,7 @@ public class MoveControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * 3 * Time.deltaTime);
+        /*transform.Translate(Vector3.right * 3 * Time.deltaTime);
         transform.Translate(Vector3.up * speedUp * Time.deltaTime);
         BG_Scroller.y = speedUp/1000;
 
@@ -44,7 +44,7 @@ public class MoveControl : MonoBehaviour
         {
             speedUp += 1;
 
-        }
+        }*/
 
         if (Input.GetKey(KeyCode.W))
         {
