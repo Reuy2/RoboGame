@@ -4,71 +4,38 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float dumping = 1.5f;
-    public Vector2 offset = new Vector2(2f, 1f);
-    public bool isLeft;
+    [SerializeField]
+    float _cameraSpeedUpAndDown = 500f;
+    [SerializeField]
+    float _cameraToZeroSpeed = 500f;
 
-    private Transform player;
-    private int LastX;
-
-    [SerializeField]
-        float leftlimit;
-    [SerializeField]
-        float rightimit;
-    [SerializeField]
-        float bottomlimit;
-    [SerializeField]
-        float upperlimit;
+    Vector3 _upperFinish = new Vector3(0f, -4f, -685.8f);
+    Vector3 _lowerFinish = new Vector3(0f, 4f, -685.8f);
+    Vector3 _zeroFinish = new Vector3(0f, 0f, -685.8f);
     // Start is called before the first frame update
     void Start()
     {
-        offset = new Vector2(Mathf.Abs(offset.x), offset.y);
-        FindPlayer(isLeft);
+     
     }
 
-    public void FindPlayer(bool playerIsLeft)
-    {
-        player = GameObject.FindGameObjectWithTag("Ship").transform;
-        LastX = Mathf.RoundToInt(player.position.x);
-        if (playerIsLeft)
-        {
-            transform.position = new Vector3(player.position.x - offset.x, player.position.y - offset.y, transform.position.z);
-        }
-        else
-        {
-            transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, transform.position.z);
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (player)
+        if (Input.GetAxis("Vertical") > 0)
         {
-            int currentX = Mathf.RoundToInt(player.position.x);
-            if (currentX > LastX) isLeft = false; else if (currentX < LastX) isLeft = true;
-            LastX = Mathf.RoundToInt(player.position.x);
-
-            Vector3 target;
-            if (isLeft)
-            {
-                target = new Vector3(player.position.x - offset.x, player.position.y - offset.y, transform.position.z);
-
-            }
-            else
-            {
-                target = new Vector3(player.position.x + offset.x, player.position.y + offset.y, transform.position.z);
-            }
-
-            Vector3 currentPosition = Vector3.Lerp(transform.position, target, dumping * Time.deltaTime);
-            transform.position = currentPosition;
+            transform.position = Vector3.Lerp(transform.position, _upperFinish, Input.GetAxis("Vertical") / _cameraSpeedUpAndDown);
+        }
+        if(Input.GetAxis("Vertical") == 0f)
+        {
+            transform.position = Vector3.Lerp(transform.position, _zeroFinish, 1f / _cameraToZeroSpeed);
+        }
+        if (Input.GetAxis("Vertical") < 0)
+        {
+            transform.position = Vector3.Lerp(transform.position, _lowerFinish, -Input.GetAxis("Vertical")/ _cameraSpeedUpAndDown);
         }
 
-        transform.position = new Vector3
-            (
-            Mathf.Clamp(transform.position.x, leftlimit, rightimit),
-            Mathf.Clamp(transform.position.y, bottomlimit, upperlimit),
-            transform.position.z
-            );
+
+        
     }
 }
