@@ -12,7 +12,7 @@ public class Asteroid : MonoBehaviour
     void Start()
     {
         _rb = this.GetComponent<Rigidbody2D>();
-        _rb.velocity = new Vector2(Random.Range(-_xMaxSpeed, 0), Random.Range(-1f, 1f));
+        _rb.velocity = new Vector2(Random.Range(-_xMaxSpeed, -3), Random.Range(-0.5f, 0.5f));
         
     }
     
@@ -20,7 +20,7 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.up * -Input.GetAxis("Vertical") * 3 * Time.deltaTime);
+        transform.Translate(Vector3.up * -Input.GetAxis("Vertical") * 5 * Time.deltaTime);
         BG_Scroller.y = Input.GetAxis("Vertical")/100;
 
         

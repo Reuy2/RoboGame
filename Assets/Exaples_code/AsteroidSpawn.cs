@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class AsteroidSpawn : MonoBehaviour
 {
-    [SerializeField] private Camera _currentCamera;
+    //[SerializeField] public Camera CurrentCamera = Camera.main;
     [SerializeField] private GameObject _asteroid;
-    [SerializeField] private float _respawnTime = 1.0f;
+    [SerializeField] private float _respawnTime = 0.7f;
     private Vector2 _screenBounds;
 
 
@@ -18,13 +18,13 @@ public class AsteroidSpawn : MonoBehaviour
 
     void Update()
     {
-        _screenBounds = _currentCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, _currentCamera.transform.position.z));
+        //_screenBounds = CurrentCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, CurrentCamera.transform.position.z));
     }
     private void spawnEnemy()
     {
         
         GameObject a = Instantiate(_asteroid) as GameObject;
-        a.transform.position = new Vector2(_screenBounds.x + 75, Random.Range(-_screenBounds.y-10, _screenBounds.y+10));
+        a.transform.position = new Vector2(75, Random.Range(-20, +20));
     }
 
     IEnumerator asteroidWave()
