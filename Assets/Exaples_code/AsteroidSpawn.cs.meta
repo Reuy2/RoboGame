@@ -3,7 +3,9 @@ guid: 4a2c6f783363a40428765372e8dc86a0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _currentCamera: {instanceID: 0}
+  - _asteroid: {fileID: 6455875534976712561, guid: e02853186727371448afd2537377b985, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
