@@ -10,6 +10,6 @@ public class BG_Scroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _img.uvRect = new Rect(_img.uvRect.position + new Vector2(_x, y) * Time.deltaTime, _img.uvRect.size);
+        _img.uvRect = new Rect(_img.uvRect.position + (new Vector2(_x, y) * Mathf.Sqrt(MoveControl.Boost)* Time.deltaTime), _img.uvRect.size);
     }
 }
