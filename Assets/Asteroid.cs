@@ -23,7 +23,7 @@ public class Asteroid : MonoBehaviour
 
         transform.Translate(Vector3.left * MoveControl.Boost * Time.deltaTime);
 
-        transform.Translate(Vector3.up * -Input.GetAxis("Vertical") * 5 * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost));
+        transform.Translate(Vector3.up * -BG_Scroller.y * 500 * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost));
         
 
         

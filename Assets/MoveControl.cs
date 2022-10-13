@@ -8,6 +8,7 @@ public class MoveControl : MonoBehaviour
 
     public static float Boost = 1;
 
+    bool _shipcontrol = true;
     public CooldownBoostTimer BoostTimer;
 
     [SerializeField]
@@ -27,12 +28,19 @@ public class MoveControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        BG_Scroller.y = Input.GetAxis("Vertical") / 100;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _shipcontrol = false;
+        }
+        if (!_shipcontrol)
+        {
+            BG_Scroller.y = 0;
+        }
+        
         BoostControl();
 
-        BG_Scroller.y = Input.GetAxis("Vertical") / 100;
-
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && _shipcontrol)
         {
             if(_angle < _angleLimit)
             {
@@ -49,7 +57,7 @@ public class MoveControl : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && _shipcontrol)
         {
             if (_angle > -_angleLimit)
             {
