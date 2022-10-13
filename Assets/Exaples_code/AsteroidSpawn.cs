@@ -24,7 +24,7 @@ public class AsteroidSpawn : MonoBehaviour
     {
         
         GameObject a = Instantiate(_asteroid) as GameObject;
-        a.transform.position = new Vector2(75, Random.Range(-20, +20));
+        a.transform.position = new Vector2(75, Random.Range(-40, +40));
     }
 
     IEnumerator asteroidWave()

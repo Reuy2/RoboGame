@@ -20,8 +20,11 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.up * -Input.GetAxis("Vertical") * 5 * Time.deltaTime);
-        BG_Scroller.y = Input.GetAxis("Vertical")/100;
+
+        transform.Translate(Vector3.left * MoveControl.Boost * Time.deltaTime);
+
+        transform.Translate(Vector3.up * -Input.GetAxis("Vertical") * 5 * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost));
+        
 
         
 

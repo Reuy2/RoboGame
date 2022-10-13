@@ -6,10 +6,14 @@ public class MoveControl : MonoBehaviour
 {
     float _angle = 0;
 
-    
+    public static float Boost = 1;
+
+    public CooldownBoostTimer BoostTimer;
 
     [SerializeField]
     int _angleLimit = 100;
+
+    float CooldownTime = 5;
 
     [SerializeField]
     float _animationSpeed = 0.1f;
@@ -23,6 +27,10 @@ public class MoveControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        BoostControl();
+
+        BG_Scroller.y = Input.GetAxis("Vertical") / 100;
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -59,5 +67,25 @@ public class MoveControl : MonoBehaviour
         }
 
 
+    }
+
+    void BoostControl()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && CooldownTime <= 0)
+        {
+            Boost = 100;
+            CooldownTime = 5;
+            BoostTimer.SetScale(0);
+        }
+        else if (Boost >= 2)
+        {
+            Boost -= 1f;
+        }
+
+        if(CooldownTime > 0)
+        {
+            CooldownTime -= Time.deltaTime;
+            BoostTimer.SetScale(5 - CooldownTime);
+        }
     }
 }
