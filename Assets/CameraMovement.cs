@@ -51,7 +51,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) && _timeElapsed < 10)
         {
-            _shipControl = false;
+            _shipControl = true;
         }
         if (_timeElapsed < _camLerpDuration && !_shipControl)
         {
