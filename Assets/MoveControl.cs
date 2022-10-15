@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class MoveControl : MonoBehaviour
 {
+
     float _angle = 0;
+
+    GameObject _helthBar;
 
     public static float Boost = 1;
 
-    bool _shipcontrol = true;
+    public static bool _shipcontrol = true;
     public CooldownBoostTimer BoostTimer;
 
     [SerializeField]
@@ -23,62 +26,27 @@ public class MoveControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _helthBar = GameObject.Find("HelthBar");
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        BG_Scroller.y = Input.GetAxis("Vertical") / 100;
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            _shipcontrol = false;
-        }
-        if (!_shipcontrol)
-        {
-            BG_Scroller.y = 0;
-        }
-        
+
         BoostControl();
 
-        if (Input.GetKey(KeyCode.W) && _shipcontrol)
-        {
-            if(_angle < _angleLimit)
-            {
-                transform.Rotate(Vector3.forward, _animationSpeed);
-                _angle += 1;
-            }
-        }
-        else
-        {
-            if (_angle > 0)
-            {
-                transform.Rotate(Vector3.forward, -_animationSpeed);
-                _angle -= 1;
-            }
-        }
+        BG_Scroller.y = Input.GetAxis("Vertical") / 100;
 
-        if (Input.GetKey(KeyCode.S) && _shipcontrol)
-        {
-            if (_angle > -_angleLimit)
-            {
-                transform.Rotate(Vector3.forward, -_animationSpeed);
-                _angle -= 1;
-            }
-        }
-        else
-        {
-            if (_angle < 0)
-            {
-                transform.Rotate(Vector3.forward, +_animationSpeed);
-                _angle += 1;
-            }
-        }
+        CumSwitch();
 
-
+        UpDownShip();
     }
+
 
     void BoostControl()
     {
+        if (!_shipcontrol)
+            return;
         if (Input.GetKeyDown(KeyCode.Space) && CooldownTime <= 0)
         {
             Boost = 100;
@@ -96,4 +64,55 @@ public class MoveControl : MonoBehaviour
             BoostTimer.SetScale(5 - CooldownTime);
         }
     }
+
+    void StraightShip()
+    {
+        if (_angle < 0)
+        {
+            transform.Rotate(Vector3.forward, +_animationSpeed);
+            _angle += 1;
+        }
+        if (_angle > 0)
+        {
+            transform.Rotate(Vector3.forward, -_animationSpeed);
+            _angle -= 1;
+        }
+    }
+
+    void UpDownShip()
+    {
+        if (!_shipcontrol)
+        {
+            StraightShip();
+            return;
+        }
+
+        if (_angle < _angleLimit && Input.GetAxis("Vertical") > 0)
+        {
+            transform.Rotate(Vector3.forward, _animationSpeed);
+            _angle += 1;
+        }
+        else if (_angle > -_angleLimit && Input.GetAxis("Vertical") < 0)
+        {
+            transform.Rotate(Vector3.forward, -_animationSpeed);
+            _angle -= 1;
+        }
+        else
+            StraightShip();
+    }
+
+    void CumSwitch()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && _shipcontrol)
+        {
+            _shipcontrol = false;
+            _helthBar.SetActive(false);
+        }
+        if (!_shipcontrol)
+        {
+            BG_Scroller.y = 0;
+            StraightShip();
+        }
+    }
+
 }
