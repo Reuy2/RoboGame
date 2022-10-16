@@ -9,6 +9,7 @@ TagManager:
   - Asteroid
   - HelthBar
   - MarsAndEarth
+  - Boost
   layers:
   - Default
   - TransparentFX

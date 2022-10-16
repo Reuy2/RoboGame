@@ -41,6 +41,10 @@ public class Asteroid : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag.Equals("Boost"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
     public void SetSpeedX(float speed)
     {

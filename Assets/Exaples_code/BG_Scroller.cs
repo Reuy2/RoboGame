@@ -9,7 +9,7 @@ public class BG_Scroller : MonoBehaviour
     public static float y;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(_gameObj.tag == "MarsAndEarth")
         {
