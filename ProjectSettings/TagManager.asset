@@ -7,6 +7,9 @@ TagManager:
   - Ship
   - PlayerCamera
   - Asteroid
+  - HelthBar
+  - MarsAndEarth
+  - Boost
   layers:
   - Default
   - TransparentFX

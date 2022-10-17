@@ -20,8 +20,7 @@ public class AsteroidSpawn : MonoBehaviour
     }
     private void spawnEnemy()
     {
-        
-        GameObject a = Instantiate(_asteroid) as GameObject;
+        GameObject a = Instantiate(_asteroid);
         a.transform.position = new Vector2(75, Random.Range(-40, +40));
     }
 

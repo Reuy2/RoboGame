@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
     Vector3 _zeroFinish = new Vector3(0f, 0f, -685.8f);
 
     float _camStartPos = -685.8f;
-    float _camEndPos = -100f;
+    float _camEndPos = -200f;
     float _camLerpDuration = 3f;
     float _timeElapsed = 0f;
     bool _shipControl = true;
@@ -26,7 +26,7 @@ public class CameraMovement : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (IsPlayerControl())
         {
