@@ -30,11 +30,8 @@ public class MoveControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    }
-    private void FixedUpdate()
-    {
-        BG_Scroller.y = Input.GetAxis("Vertical") / 100;
         BoostControl();
+        BG_Scroller.y = Input.GetAxis("Vertical") / 100;
         CumSwitch();
         UpDownShip();
     }
@@ -84,8 +81,10 @@ public class MoveControl : MonoBehaviour
             transform.Rotate(Vector3.forward, -_animationSpeed);
             _angle -= 1;
         }
-        else
+        else if(Input.GetAxis("Vertical") == 0)
+        {
             StraightShip();
+        }
     }
 
     void CumSwitch()

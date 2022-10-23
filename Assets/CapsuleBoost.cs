@@ -11,7 +11,7 @@ public class CapsuleBoost : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        xSpeed = Random.Range(-10, -4);
+        xSpeed = Random.Range(10, 4);
         ySpeed = Random.Range(-5, 5);
     }
 
@@ -25,7 +25,7 @@ public class CapsuleBoost : MonoBehaviour
 
     void Speed()
     {
-        transform.Translate(xSpeed * Time.deltaTime, ySpeed * Time.deltaTime, 0f);
+        transform.Translate(Vector3.left * xSpeed * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost));
         transform.Translate(Vector3.up * -BG_Scroller.y * 500 * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost));
     }
 
