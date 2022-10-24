@@ -28,7 +28,7 @@ public class Asteroid : MonoBehaviour
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         if (transform.position.x < _screenBounds.x)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

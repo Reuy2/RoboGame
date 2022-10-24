@@ -17,8 +17,7 @@ public class ObjectsInSpace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _gameObject.transform.Translate(Vector3.left * MoveControl.Boost * Time.deltaTime * 10);
-        _gameObject.transform.Translate(Vector3.up * -BG_Scroller.y * 500 * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost)/2);
+        
     }
 
     IEnumerator SpawnObject() 
@@ -40,9 +39,8 @@ public class ObjectsInSpace : MonoBehaviour
         _transp.a = 0;
         _textMesh.color = _transp;
     }
-    public void Appear(GameObject obj)
+    public void Appear(TextMesh _text)
     {
-        TextMesh _text = obj.GetComponentInChildren<TextMesh>();
         Color transp = _text.color;
         if (_timeElapsed<3f && transp.a == 0)
         {
@@ -51,5 +49,6 @@ public class ObjectsInSpace : MonoBehaviour
             _timeElapsed += Time.deltaTime;
         }
     }
+    
 
 }

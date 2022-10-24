@@ -11,6 +11,7 @@ TagManager:
   - MarsAndEarth
   - Boost
   - SpaceObject
+  - ObjectCheck
   layers:
   - Default
   - TransparentFX
