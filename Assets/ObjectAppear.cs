@@ -23,8 +23,7 @@ public class ObjectAppear : MonoBehaviour
         {
             Destroy(transform.parent.gameObject);
         }
-        transform.parent.Translate(Vector3.left * MoveControl.Boost * Time.deltaTime * 10);
-        transform.parent.Translate(Vector3.up * -BG_Scroller.y * 500 * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost) / 2);
+        
     }
 
     private void FixedUpdate()
@@ -33,6 +32,10 @@ public class ObjectAppear : MonoBehaviour
             Appear(GetComponent<TextMesh>());
         if (disappearing)
             Disapppear(GetComponent<TextMesh>());
+        if (transform.parent.gameObject == null)
+            return;
+        transform.parent.Translate(Vector3.left * MoveControl.Boost * Time.deltaTime * 10);
+        transform.parent.Translate(Vector3.up * -BG_Scroller.y * 500 * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost) / 2);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
