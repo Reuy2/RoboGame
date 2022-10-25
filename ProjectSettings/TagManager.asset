@@ -10,6 +10,8 @@ TagManager:
   - HelthBar
   - MarsAndEarth
   - Boost
+  - SpaceObject
+  - ObjectCheck
   layers:
   - Default
   - TransparentFX
