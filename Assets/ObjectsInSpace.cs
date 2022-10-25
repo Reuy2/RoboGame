@@ -13,13 +13,6 @@ public class ObjectsInSpace : MonoBehaviour
         _gameObject = ObjectPrefab[0];
         StartCoroutine(SpawnObject());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator SpawnObject() 
     {
         while (MoveControl._shipcontrol && i < ObjectPrefab.Count) 
@@ -29,7 +22,6 @@ public class ObjectsInSpace : MonoBehaviour
             yield return new WaitForSeconds(30f);
         }
     }
-
     void SpawnObj()
     {
         _gameObject = Instantiate(ObjectPrefab[i]);
@@ -49,6 +41,4 @@ public class ObjectsInSpace : MonoBehaviour
             _timeElapsed += Time.deltaTime;
         }
     }
-    
-
 }
