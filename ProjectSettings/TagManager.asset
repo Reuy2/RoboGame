@@ -12,6 +12,9 @@ TagManager:
   - Boost
   - SpaceObject
   - ObjectCheck
+  - MiniGame
+  - MiniGame1
+  - TextOnMiniGame1
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - MiniGame
   - 
   - 
   - 
@@ -57,4 +60,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3528029299
+    locked: 0
+  - name: MiniGame
+    uniqueID: 112957961
     locked: 0

@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 132746269}
   - component: {fileID: 132746270}
   - component: {fileID: 132746271}
+  - component: {fileID: 132746272}
   m_Layer: 0
   m_Name: ShipCamera
   m_TagString: MainCamera
@@ -252,6 +253,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _asteroid: {fileID: 4621967505342898157, guid: 08d33ed2a62e2614e88d4b1692c70902, type: 3}
   _respawnTime: 10
+--- !u!114 &132746272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132746265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5c661ecef931147bae4b5201f15442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGame1: {fileID: 4805812697134823097, guid: fc330bf35e0bc5644834d4d9ee8e5b8a, type: 3}
 --- !u!1 &159755947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1297,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &791310092
 GameObject:
@@ -3314,7 +3328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6455875534976712574, guid: e02853186727371448afd2537377b985, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6455875534976712574, guid: e02853186727371448afd2537377b985, type: 3}
       propertyPath: m_LocalScale.x
