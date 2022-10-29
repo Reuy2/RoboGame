@@ -11,7 +11,6 @@ public class AsteroidSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         StartCoroutine(asteroidWave());
     }
 

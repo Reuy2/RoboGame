@@ -18,12 +18,7 @@ public class CameraMovement : MonoBehaviour
     float _camLerpDuration = 3f;
     float _timeElapsed = 0f;
     bool _shipControl = true;
-    // Start is called before the first frame update
-    void Start()
-    {
-     
-    }
-
+    bool cam_locked = false;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -49,15 +44,33 @@ public class CameraMovement : MonoBehaviour
 
     bool IsPlayerControl()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _timeElapsed < 10)
+        if (Input.GetKey(KeyCode.LeftShift) && _timeElapsed < 3)
         {
             _shipControl = false;
         }
-        if (_timeElapsed < _camLerpDuration && !_shipControl)
+        if (_timeElapsed < _camLerpDuration && !_shipControl && !cam_locked)
         {
             transform.position = new Vector3(0f, 0f, Mathf.Lerp(_camStartPos, _camEndPos, _timeElapsed / _camLerpDuration));
             _timeElapsed += Time.deltaTime;
         }
+        if (Input.GetKey(KeyCode.LeftShift) && !_shipControl && _timeElapsed >=3 && MoveControl.OnCommandPoint)
+        {
+            _shipControl = true;
+            StartCoroutine(CamToMaxDistance(0f));
+        }
         return !_shipControl;
+    }
+    
+    IEnumerator CamToMaxDistance(float time)
+    {
+        cam_locked = true;
+        while (time < _camLerpDuration)
+        {
+            yield return new WaitForEndOfFrame();
+            transform.position = new Vector3(0f, 0f, Mathf.Lerp(_camEndPos, _camStartPos, time / _camLerpDuration));
+            time += Time.deltaTime;
+        }
+        _timeElapsed = 0;
+        cam_locked = false;
     }
 }

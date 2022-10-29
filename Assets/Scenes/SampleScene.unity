@@ -1407,11 +1407,11 @@ GameObject:
   m_Component:
   - component: {fileID: 886701946}
   - component: {fileID: 886701947}
-  - component: {fileID: 886701948}
   - component: {fileID: 886701950}
   - component: {fileID: 886701949}
   - component: {fileID: 886701952}
   - component: {fileID: 886701951}
+  - component: {fileID: 886701953}
   m_Layer: 0
   m_Name: ShipUncovered
   m_TagString: Ship
@@ -1486,18 +1486,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &886701948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886701945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 348793078d9e001428d8f4834d171acd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!68 &886701949
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1617,7 +1605,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886701945}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1643,7 +1631,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886701945}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1662,6 +1650,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.50515926, y: 2.457139}
   m_EdgeRadius: 0
+--- !u!70 &886701953
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886701945}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.10575664, y: 5.1232715}
+  m_Size: {x: 2.1636658, y: 1.3843764}
+  m_Direction: 1
 --- !u!1001 &945582423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2981,7 +2985,7 @@ MonoBehaviour:
   BoostTimer: {fileID: 229903499}
   _angleLimit: 80
   _animationSpeed: 0.16
-  PlayerPref: {fileID: 7938294951610942430, guid: 6df3d63b802fe674489e3833a4470975, type: 3}
+  PlayerPreference: {fileID: 7938294951610942430, guid: 6df3d63b802fe674489e3833a4470975, type: 3}
 --- !u!114 &2051817546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3216,7 +3220,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1001 &2099326242
 PrefabInstance:
