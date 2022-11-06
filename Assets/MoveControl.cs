@@ -23,6 +23,8 @@ public class MoveControl : MonoBehaviour
     float _animationSpeed = 0.1f;
     [SerializeField]
     GameObject PlayerPreference;
+    [SerializeField]
+    Transform Ship;
 
     // Start is called before the first frame update
     void Start()
@@ -98,7 +100,7 @@ public class MoveControl : MonoBehaviour
             PlayerPref = PlayerPreference;
             _helthBar.SetActive(false);
             _shipcontrol = false;
-            PlayerPref = Instantiate(PlayerPref);
+            PlayerPref = Instantiate(PlayerPref,Ship);
 
             _player = new Player(PlayerPref, 5.04f, 0.00f, 0.04f);
             PlayerObject = GameObject.Find("Player(Clone)");

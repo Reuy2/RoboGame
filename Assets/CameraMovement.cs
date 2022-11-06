@@ -50,7 +50,9 @@ public class CameraMovement : MonoBehaviour
         }
         if (_timeElapsed < _camLerpDuration && !_shipControl && !cam_locked)
         {
-            transform.position = new Vector3(0f, 0f, Mathf.Lerp(_camStartPos, _camEndPos, _timeElapsed / _camLerpDuration));
+            transform.parent = GameObject.FindWithTag("Player").transform;
+            transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, GameObject.FindWithTag("Player").transform.position.y, Mathf.Lerp(_camStartPos, _camEndPos, _timeElapsed / _camLerpDuration));
+            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
             _timeElapsed += Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.LeftShift) && !_shipControl && _timeElapsed >=3 && MoveControl.OnCommandPoint)
@@ -64,6 +66,7 @@ public class CameraMovement : MonoBehaviour
     IEnumerator CamToMaxDistance(float time)
     {
         cam_locked = true;
+        transform.parent = null;
         while (time < _camLerpDuration)
         {
             yield return new WaitForEndOfFrame();

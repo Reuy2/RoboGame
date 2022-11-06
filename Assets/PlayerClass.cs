@@ -23,7 +23,7 @@ public class Player
     }
     public void Control()
     {
-        Move(Input.GetAxis("Vertical"), -Input.GetAxis("Horizontal"));
+        Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
 }
