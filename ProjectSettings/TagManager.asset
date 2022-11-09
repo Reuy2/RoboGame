@@ -15,6 +15,7 @@ TagManager:
   - MiniGame
   - MiniGame1
   - TextOnMiniGame1
+  - TriggerWarning
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ public class ObjectsInSpace : MonoBehaviour
     }
     IEnumerator SpawnObject() 
     {
-        while (MoveControl._shipcontrol && i < ObjectPrefab.Count) 
+        while (MoveControl.shipÑontrol && i < ObjectPrefab.Count) 
         {
             i++;
             SpawnObj();

@@ -8,6 +8,8 @@ public class CameraMovement : MonoBehaviour
     float _cameraSpeedUpAndDown = 500f;
     [SerializeField]
     float _cameraToZeroSpeed = 500f;
+    [SerializeField] MoveControl Ship;
+    [SerializeField] PlayerMovement Player;
 
     Vector3 _upperFinish = new Vector3(0f, -4f, -685.8f);
     Vector3 _lowerFinish = new Vector3(0f, 4f, -685.8f);
@@ -17,7 +19,7 @@ public class CameraMovement : MonoBehaviour
     float _camEndPos = -200f;
     float _camLerpDuration = 3f;
     float _timeElapsed = 0f;
-    bool _shipControl = true;
+    bool _shipControl = false;
     bool cam_locked = false;
 
     // Update is called once per frame
@@ -44,20 +46,19 @@ public class CameraMovement : MonoBehaviour
 
     bool IsPlayerControl()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _timeElapsed < 3)
+        if (_timeElapsed < _camLerpDuration && !Ship.IsShipControl() && !cam_locked)
         {
-            _shipControl = false;
-        }
-        if (_timeElapsed < _camLerpDuration && !_shipControl && !cam_locked)
-        {
-            transform.parent = GameObject.FindWithTag("Player").transform;
-            transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, GameObject.FindWithTag("Player").transform.position.y, Mathf.Lerp(_camStartPos, _camEndPos, _timeElapsed / _camLerpDuration));
-            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, GameObject.FindWithTag("Player").transform.position.x, _timeElapsed / _camLerpDuration), Mathf.Lerp(transform.position.y, GameObject.FindWithTag("Player").transform.position.y, _timeElapsed / _camLerpDuration), Mathf.Lerp(_camStartPos, _camEndPos, _timeElapsed / _camLerpDuration));
             _timeElapsed += Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.LeftShift) && !_shipControl && _timeElapsed >=3 && MoveControl.OnCommandPoint)
+        if(_timeElapsed >= _camLerpDuration && !_shipControl && !cam_locked)
         {
-            _shipControl = true;
+            transform.parent = GameObject.FindWithTag("Player").transform;
+            transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, GameObject.FindWithTag("Player").transform.position.y, _camEndPos);
+            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && _timeElapsed >=3 && Player.onCommandPoint)
+        {
             StartCoroutine(CamToMaxDistance(0f));
         }
         return !_shipControl;
@@ -70,7 +71,7 @@ public class CameraMovement : MonoBehaviour
         while (time < _camLerpDuration)
         {
             yield return new WaitForEndOfFrame();
-            transform.position = new Vector3(0f, 0f, Mathf.Lerp(_camEndPos, _camStartPos, time / _camLerpDuration));
+            transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(_camEndPos, _camStartPos, time / _camLerpDuration));
             time += Time.deltaTime;
         }
         _timeElapsed = 0;

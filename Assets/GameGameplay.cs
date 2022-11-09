@@ -6,15 +6,14 @@ using UnityEngine;
 public class GameGameplay : MonoBehaviour
 {
     [SerializeField]
-    float Timertime;
+     private float Timertime;
 
     [SerializeField]
     TMP_Text Text;
 
     float ElapsedTime;
 
-    public System.Func<EdgeCollider2D> Collider2D { get; private set; }
-
+    private TriggerMiniGame triggerMiniGame;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +60,10 @@ public class GameGameplay : MonoBehaviour
             ElapsedTime = 0;
             GameObject a = GameObject.FindWithTag("MiniGame1");
             //тут вставлять починку поломки
+            if (triggerMiniGame.CountGame() == 1)
+            {
+                triggerMiniGame.CountGame(-1);
+            }
             Destroy(a);
 
         }
@@ -89,6 +92,11 @@ public class GameGameplay : MonoBehaviour
     {
         GameObject a = GameObject.FindWithTag("MiniGame1");
         //тут не вставлять починку поломки
+        if(triggerMiniGame.CountGame() == 1)
+        {
+            triggerMiniGame.CountGame(-1);
+        }
+
         Destroy(a);
     }
 }
