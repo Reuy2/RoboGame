@@ -43,9 +43,14 @@ public class MoveControl : MonoBehaviour
         UpDownShip();
     }
 
-    public void ShipControlChange()
+    public void ShipControlChangeToTrue()
     {
-        ship—ontrol = !ship—ontrol;
+        ship—ontrol = true;
+    }
+
+    public void ShipControlChangeToFalse()
+    {
+        ship—ontrol = false;
     }
 
     public bool IsShipControl()
@@ -108,8 +113,8 @@ public class MoveControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && ship—ontrol)
         {
-            ShipControlChange();
-            Player.MovementAllowChange();
+            ShipControlChangeToFalse();
+            Player.MovementAllowChangeToTrue();
 
             if (ShiftEnable)
             {
@@ -120,8 +125,8 @@ public class MoveControl : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.LeftShift) && !ship—ontrol && ShiftEnable && Player.onCommandPoint)
         {
             CoverShip();
-            ShipControlChange();
-            Player.MovementAllowChange();
+            ShipControlChangeToTrue();
+            Player.MovementAllowChangeToFalse();
         }
         
     }
@@ -134,17 +139,23 @@ public class MoveControl : MonoBehaviour
 
     IEnumerator Cover(GameObject player, float time = 0f)
     {
+        GameObject[] ObjectList = GameObject.FindGameObjectsWithTag("TriggerWarning");
+        SpriteRenderer shipTransp = GameObject.Find("ShipUncovered").GetComponent<SpriteRenderer>();
+        SpriteRenderer playerTransp = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         while (time < 3f)
         {
-            SpriteRenderer shipTransp = GameObject.Find("ShipUncovered").GetComponent<SpriteRenderer>();
-            SpriteRenderer playerTransp = GameObject.Find("Player").GetComponent<SpriteRenderer>();
             Color transp = shipTransp.color;
             yield return new WaitForEndOfFrame();
 
             transp.a = Mathf.Lerp(1, 0, time/3f);
             shipTransp.color = transp;
             playerTransp.color = transp;
-            
+            foreach (GameObject i in ObjectList)
+            {
+                SpriteRenderer Render = i.GetComponent<SpriteRenderer>();
+                Render.color = transp;
+            }
+
             time += Time.deltaTime;
         }
         ShiftEnable = true;
@@ -152,16 +163,22 @@ public class MoveControl : MonoBehaviour
 
     IEnumerator Uncover(GameObject player, float time = 0f)
     {
+        GameObject[] ObjectList = GameObject.FindGameObjectsWithTag("TriggerWarning");
+        SpriteRenderer shipTransp = GameObject.Find("ShipUncovered").GetComponent<SpriteRenderer>();
+        SpriteRenderer playerTransp = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         while (time < 3f)
         {
-            SpriteRenderer shipTransp = GameObject.Find("ShipUncovered").GetComponent<SpriteRenderer>();
-            SpriteRenderer playerTransp = GameObject.Find("Player").GetComponent<SpriteRenderer>();
             Color transp = shipTransp.color;
             yield return new WaitForEndOfFrame();
 
             transp.a = Mathf.Lerp(0, 1, time/3f);
             shipTransp.color = transp;
             playerTransp.color = transp;
+            foreach (GameObject i in ObjectList)
+            {
+                SpriteRenderer Render = i.GetComponent<SpriteRenderer>();
+                Render.color = transp;
+            }
 
 
             time += Time.deltaTime;

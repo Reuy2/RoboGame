@@ -13,13 +13,18 @@ public class GameGameplay : MonoBehaviour
 
     float ElapsedTime;
 
-    private TriggerMiniGame triggerMiniGame;
+    private TriggerMiniGame _triggerMiniGame;
+    private PlayerMovement _player;
     // Start is called before the first frame update
     void Start()
     {
         ElapsedTime = 0;
+        _triggerMiniGame = GameObject.Find("TriggerController").GetComponent<TriggerMiniGame>();
+        _player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        _player.MovementAllowChangeToFalse();
+        _triggerMiniGame.CountGame(1);
 
-        
+
     }
 
     // Update is called once per frame
@@ -58,13 +63,13 @@ public class GameGameplay : MonoBehaviour
         if (ElapsedTime >= Timertime)
         {
             ElapsedTime = 0;
-            GameObject a = GameObject.FindWithTag("MiniGame1");
-            //тут вставлять починку поломки
-            if (triggerMiniGame.CountGame() == 1)
+            _player.MovementAllowChangeToTrue();
+            if (_triggerMiniGame.CountGame() == 1)
             {
-                triggerMiniGame.CountGame(-1);
+                _triggerMiniGame.CountGame(-1);
             }
-            Destroy(a);
+            Destroy(GameObject.Find("CircleInCenter(Clone)"));
+            Destroy(GameObject.FindWithTag("MiniGame1"));
 
         }
     }
@@ -90,13 +95,13 @@ public class GameGameplay : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject a = GameObject.FindWithTag("MiniGame1");
+        _player.MovementAllowChangeToTrue();
         //тут не вставлять починку поломки
-        if(triggerMiniGame.CountGame() == 1)
+        if (_triggerMiniGame.CountGame() == 1)
         {
-            triggerMiniGame.CountGame(-1);
+            _triggerMiniGame.CountGame(-1);
         }
 
-        Destroy(a);
+        Destroy(GameObject.FindWithTag("MiniGame1"));
     }
 }

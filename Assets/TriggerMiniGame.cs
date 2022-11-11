@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class TriggerMiniGame : MonoBehaviour
 {
-    [SerializeField] private GameObject _miniGame;
-
+    public List<GameObject> WARNING_LIST;
     private static int COUNT_MINI_GAME;
-
     private static int COUNT_WARNINGS;
-
+    private void Start()
+    {
+        //WARNING_LIST = new List<GameObject>(Resources.LoadAll<GameObject>("Warnings"));
+        //print(WARNING_LIST);
+    }
     public int CountWarnings()
     {
         return COUNT_WARNINGS;
@@ -28,5 +30,10 @@ public class TriggerMiniGame : MonoBehaviour
     public int CountGame()
     {
         return COUNT_MINI_GAME;
+    }
+
+    public List<GameObject> GetWarningList()
+    {
+        return WARNING_LIST;
     }
 }
