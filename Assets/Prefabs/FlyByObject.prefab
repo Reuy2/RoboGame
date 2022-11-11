@@ -191,7 +191,7 @@ TextMesh:
   m_Font: {fileID: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 15793967
 --- !u!58 &8154781413768080210
 CircleCollider2D:
   m_ObjectHideFlags: 0
