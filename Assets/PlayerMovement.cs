@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speed = 1.5f;
     [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private GameObject circleOnCenterGame;
+    [SerializeField] private GameObject circleOnCenterGame, lampButtons;
     [SerializeField] private TriggerMiniGame _triggerControl;
 
     private bool isMovementAllow = false;
@@ -21,9 +21,13 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && onTriggerWarning)
         { 
             //Тут добавлять запуск игры
-            if(warningName == "CircleInCenter(Clone)" && _triggerControl.CountGame() == 0)
+            if (warningName == "CircleInCenter(Clone)" && _triggerControl.CountGame() == 0)
             {
                 Instantiate<GameObject>(circleOnCenterGame);
+            }
+            if (warningName == "LampButtonsWarn(Clone)" && _triggerControl.CountGame() == 0)
+            {
+                Instantiate<GameObject>(lampButtons);
             }
         }
     }

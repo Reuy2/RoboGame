@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7990126999852592622}
   - component: {fileID: 5778539598301041642}
   m_Layer: 0
-  m_Name: CircleInCenter
+  m_Name: LampButtonsWarn
   m_TagString: TriggerWarning
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,17 +27,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2236393120522738345}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.033189625, y: -0.31365767}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 0.8828125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &3231454714244472337
@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528883e7af624fb4aa76653559ed3228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: -2.37
+  x: -2.36
   y: 2.38

@@ -23,22 +23,15 @@ public class GameGameplay : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         _player.MovementAllowChangeToFalse();
         _triggerMiniGame.CountGame(1);
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
         ElapsedTime += Time.deltaTime;
-
         TextPrint();
-
         Timer();
-
         Direction();
-
-
 
     }
 

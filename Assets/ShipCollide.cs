@@ -18,17 +18,20 @@ public class ShipCollide : MonoBehaviour
             return;
         if(collision.gameObject.tag == "Asteroid")
         {
-            if(Warning_List.Count - TriggerController.CountWarnings() > 0)
+            
+            if (Warning_List.Count - TriggerController.CountWarnings() > 0)
             {
-                int RandomWarning = Random.Range(0, Warning_List.Count - 1 - TriggerController.CountWarnings());
+                int RandomWarning = Random.Range(0, Warning_List.Count);
+                Debug.Log(Warning_List.Count);
                 Instantiate(Warning_List[RandomWarning], transform);
+
+                // ¬от тут большой кос€к с листом варнингов. Ќадо удал€ть и добавл€ть элементы списка, иначе одно и то же спавнитс€ по куче раз.
             }
             else
             {
                 //“ут вставить проигрыш по достижении многочисленного количества повреждений
             }
         }
-        Debug.Log("Hit detected");
         Destroy(collision.gameObject);
     }
 }

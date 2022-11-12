@@ -6,8 +6,7 @@ public class MoveControl : MonoBehaviour
 {
 
     float _angle = 0f;
-    float time = 0f;
-    GameObject _helthBar, PlayerObject, PlayerPref;
+    GameObject PlayerObject;
     Player _player;
     bool ShiftEnable = true; 
 

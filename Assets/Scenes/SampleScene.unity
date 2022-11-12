@@ -262,6 +262,8 @@ MonoBehaviour:
   _speed: 0.1
   _rb: {fileID: 65896604}
   circleOnCenterGame: {fileID: 4805812697134823097, guid: fc330bf35e0bc5644834d4d9ee8e5b8a, type: 3}
+  lampButtons: {fileID: 8370815924784835006, guid: 10eb1cffdd6709344b386e0985b1a37d, type: 3}
+  _triggerControl: {fileID: 1376309827}
   onCommandPoint: 0
   onTriggerWarning: 0
 --- !u!1 &132746265
@@ -2267,6 +2269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WARNING_LIST:
   - {fileID: 2236393120522738345, guid: cb92480618f30094ca98d060a7a7ea61, type: 3}
+  - {fileID: 2236393120522738345, guid: 2f5b5c9f5178cf54bbecf5ff53df764b, type: 3}
 --- !u!4 &1376309828
 Transform:
   m_ObjectHideFlags: 0
