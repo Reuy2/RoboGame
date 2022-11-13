@@ -57,7 +57,7 @@ public class CameraMovement : MonoBehaviour
             transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, GameObject.FindWithTag("Player").transform.position.y, _camEndPos);
             transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         }
-        if (Input.GetKey(KeyCode.LeftShift) && _timeElapsed >=3 && Player.onCommandPoint)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _timeElapsed >=3 && Player.onCommandPoint)
         {
             StartCoroutine(CamToMaxDistance(0f));
         }

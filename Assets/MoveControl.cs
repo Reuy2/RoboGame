@@ -6,9 +6,12 @@ public class MoveControl : MonoBehaviour
 {
 
     float _angle = 0f;
+
     GameObject PlayerObject;
+
     Player _player;
-    bool ShiftEnable = true; 
+
+    bool ShiftEnable = true;
 
     public static bool OnCommandPoint = false;
     public static float Boost = 1;

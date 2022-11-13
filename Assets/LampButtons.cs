@@ -111,7 +111,7 @@ public class LampButtons : MonoBehaviour
             trigger.CountGame(-1);
         }
         Destroy(GameObject.FindGameObjectWithTag("MiniGame"));
-        Debug.Log(GameObject.Find("LampButtonsWarn(Clone)")); // Вот тут косяк какой-то, хз. Не получается удалить варнинг
-        Destroy(GameObject.Find("LampButtons(Clone)"));
+        Debug.Log(GameObject.Find("LampButtonsWarn(Clone)")); // Вот тут косяк какой-то, хз. Не получается удалить варнинг, (макс)ща пофикшу
+        Destroy(GameObject.Find("LampButtonsWarn(Clone)"));
     }
 }
