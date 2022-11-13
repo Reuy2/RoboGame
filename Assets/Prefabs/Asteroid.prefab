@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _xMaxSpeed: 10
+  asteroidDust: {fileID: 591187830679081463, guid: ce7949b44a0c6ce45b006ca6a7a0ec0e, type: 3}
 --- !u!60 &1722499533837488162
 PolygonCollider2D:
   m_ObjectHideFlags: 0

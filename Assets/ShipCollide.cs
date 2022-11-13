@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShipCollide : MonoBehaviour
 {
     [SerializeField] private TriggerMiniGame TriggerController;
+    [SerializeField] private GameObject asteroidDust;
     private List<GameObject> Warning_List;
     // Start is called before the first frame update
 
@@ -18,7 +19,10 @@ public class ShipCollide : MonoBehaviour
             return;
         if(collision.gameObject.tag == "Asteroid")
         {
+<<<<<<< Updated upstream
             
+=======
+>>>>>>> Stashed changes
             if (Warning_List.Count - TriggerController.CountWarnings() > 0)
             {
                 int RandomWarning = Random.Range(0, Warning_List.Count);
@@ -32,6 +36,16 @@ public class ShipCollide : MonoBehaviour
                 //Тут вставить проигрыш по достижении многочисленного количества повреждений
             }
         }
+<<<<<<< Updated upstream
+=======
+        Debug.Log("Hit detected");
+
+>>>>>>> Stashed changes
         Destroy(collision.gameObject);
+
+        GameObject asteriodDestroy = Instantiate(asteroidDust);
+        asteriodDestroy.transform.position = collision.transform.position;
+        Animation anim = asteroidDust.GetComponent<Animation>();
+        Destroy(asteriodDestroy, anim.clip.length);
     }
 }

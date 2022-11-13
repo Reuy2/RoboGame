@@ -3,7 +3,10 @@ guid: cf30602679cbe0f4999455183a9d5a89
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - TriggerController: {instanceID: 0}
+  - asteroidDust: {fileID: 591187830679081463, guid: ce7949b44a0c6ce45b006ca6a7a0ec0e, type: 3}
+  - bistrieKamniDust: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

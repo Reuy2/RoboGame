@@ -5,6 +5,7 @@ using UnityEngine;
 public class BistrieKamniMovement : MonoBehaviour
 {
     [SerializeField] private float _xMaxSpeed;
+    [SerializeField] private GameObject asteroidDust;
     private Rigidbody2D _rb;
     private Vector2 _screenBounds;
     //float speedUp = 0;
@@ -33,10 +34,18 @@ public class BistrieKamniMovement : MonoBehaviour
         if (collision.gameObject.tag.Equals("Asteroid"))
         {
             Destroy(collision.gameObject);
+            GameObject asteriodDestroy = Instantiate(asteroidDust);
+            asteriodDestroy.transform.position = collision.transform.position;
+            Animation anim = asteroidDust.GetComponent<Animation>();
+            Destroy(asteriodDestroy, anim.clip.length);
         }
         if (collision.gameObject.tag.Equals("Boost"))
         {
             Destroy(collision.gameObject);
+            GameObject asteriodDestroy = Instantiate(asteroidDust);
+            asteriodDestroy.transform.position = collision.transform.position;
+            Animation anim = asteroidDust.GetComponent<Animation>();
+            Destroy(asteriodDestroy, anim.clip.length);
         }
     }
 }
