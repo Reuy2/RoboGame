@@ -5,27 +5,25 @@ using UnityEngine;
 public class ShipCollide : MonoBehaviour
 {
     [SerializeField] private TriggerMiniGame TriggerController;
+    [SerializeField] private Transform _shipUncoveredTransform;
     private List<GameObject> Warning_List;
-    // Start is called before the first frame update
-
-    private void Start()
-    {
-        Warning_List = TriggerController.GetWarningList();
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Warning_List = TriggerController.GetWarningList();
         if (collision.gameObject.tag == "Player")
             return;
         if(collision.gameObject.tag == "Asteroid")
         {
             
-            if (Warning_List.Count - TriggerController.CountWarnings() > 0)
+            if (Warning_List.Count  > 0)
             {
-                int RandomWarning = Random.Range(0, Warning_List.Count);
+                int RandomWarning = Random.Range(0, Warning_List.Count-1);
                 Debug.Log(Warning_List.Count);
-                Instantiate(Warning_List[RandomWarning], transform);
+                Debug.Log(RandomWarning);
+                Instantiate(Warning_List[RandomWarning], _shipUncoveredTransform);
+                TriggerController.SpawningWarning(RandomWarning);
 
-                // ¬от тут большой кос€к с листом варнингов. Ќадо удал€ть и добавл€ть элементы списка, иначе одно и то же спавнитс€ по куче раз.
+                // ¬от тут большой(не такой он уж и большой(макс)) кос€к с листом варнингов. Ќадо удал€ть и добавл€ть элементы списка, иначе одно и то же спавнитс€ по куче раз.
             }
             else
             {

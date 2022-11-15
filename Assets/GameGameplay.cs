@@ -94,7 +94,6 @@ public class GameGameplay : MonoBehaviour
         {
             _triggerMiniGame.CountGame(-1);
         }
-
         Destroy(GameObject.FindWithTag("MiniGame1"));
     }
 }

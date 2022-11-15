@@ -365,10 +365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c63111c58f9104b8461aacef9298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraSpeedUpAndDown: 500
-  _cameraToZeroSpeed: 500
   Ship: {fileID: 2051817545}
-  Player: {fileID: 65896606}
+  _playerMovement: {fileID: 65896606}
+  _player: {fileID: 65896601}
+  _shipUncovered: {fileID: 886701945}
 --- !u!114 &132746270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,10 +1174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c63111c58f9104b8461aacef9298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraSpeedUpAndDown: 500
-  _cameraToZeroSpeed: 500
   Ship: {fileID: 0}
-  Player: {fileID: 0}
+  _playerMovement: {fileID: 0}
+  _player: {fileID: 0}
+  _shipUncovered: {fileID: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2843,6 +2843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerController: {fileID: 1376309827}
+  _shipUncoveredTransform: {fileID: 886701946}
 --- !u!212 &2051817547
 SpriteRenderer:
   m_ObjectHideFlags: 0

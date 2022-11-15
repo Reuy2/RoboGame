@@ -6,17 +6,19 @@ public class WarningSpawn : MonoBehaviour
 {
     [SerializeField] private float x;
     [SerializeField] private float y;
+    [SerializeField] private int indexOfWarning;
     private TriggerMiniGame _triggerController;
     private void Awake()
     {
+
         transform.Translate(x, y, 0);
         _triggerController = GameObject.Find("TriggerController").GetComponent<TriggerMiniGame>();
         _triggerController.CountWarnings(1);
         print(_triggerController.CountWarnings());
     }
-
     private void OnDestroy()
     {
+        _triggerController.DespawningWarning(indexOfWarning);
         _triggerController.CountWarnings(-1);
     }
 }

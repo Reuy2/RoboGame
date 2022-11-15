@@ -33,16 +33,17 @@ public class MoveControl : MonoBehaviour
     void Update()
     {
         BoostControl();
+
         if (ship—ontrol)
         {
             BG_Scroller.y = Input.GetAxis("Vertical") / 100;
+            UpDownShip();
         }
         else
         {
             BG_Scroller.y = 0;
+            StraightShip();
         }
-        CumSwitch();
-        UpDownShip();
     }
 
     public void ShipControlChangeToTrue()
@@ -111,91 +112,5 @@ public class MoveControl : MonoBehaviour
         }
     }
 
-    void CumSwitch()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && ship—ontrol)
-        {
-            ShipControlChangeToFalse();
-            Player.MovementAllowChangeToTrue();
-
-            if (ShiftEnable)
-            {
-                ShiftEnable = false;
-                StartCoroutine(Uncover(PlayerObject));
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftShift) && !ship—ontrol && ShiftEnable && Player.onCommandPoint)
-        {
-            CoverShip();
-            ShipControlChangeToTrue();
-            Player.MovementAllowChangeToFalse();
-        }
-        
-    }
-
-    void CoverShip()
-    {
-        ShiftEnable = false;
-        StartCoroutine(Cover(PlayerObject));
-    }
-
-    IEnumerator Cover(GameObject player, float time = 0f)
-    {
-        GameObject[] ObjectList = GameObject.FindGameObjectsWithTag("TriggerWarning");
-        SpriteRenderer shipTransp = GameObject.Find("ShipUncovered").GetComponent<SpriteRenderer>();
-        SpriteRenderer playerTransp = GameObject.Find("Player").GetComponent<SpriteRenderer>();
-        while (time < 3f)
-        {
-            Color transp = shipTransp.color;
-            yield return new WaitForEndOfFrame();
-
-            transp.a = Mathf.Lerp(1, 0, time/3f);
-            shipTransp.color = transp;
-            playerTransp.color = transp;
-            foreach (GameObject i in ObjectList)
-            {
-                SpriteRenderer Render = i.GetComponent<SpriteRenderer>();
-                Render.color = transp;
-            }
-
-            time += Time.deltaTime;
-        }
-        ShiftEnable = true;
-    }
-
-    IEnumerator Uncover(GameObject player, float time = 0f)
-    {
-        GameObject[] ObjectList = GameObject.FindGameObjectsWithTag("TriggerWarning");
-        SpriteRenderer shipTransp = GameObject.Find("ShipUncovered").GetComponent<SpriteRenderer>();
-        SpriteRenderer playerTransp = GameObject.Find("Player").GetComponent<SpriteRenderer>();
-        while (time < 3f)
-        {
-            Color transp = shipTransp.color;
-            yield return new WaitForEndOfFrame();
-
-            transp.a = Mathf.Lerp(0, 1, time/3f);
-            shipTransp.color = transp;
-            playerTransp.color = transp;
-            foreach (GameObject i in ObjectList)
-            {
-                SpriteRenderer Render = i.GetComponent<SpriteRenderer>();
-                Render.color = transp;
-            }
-
-
-            time += Time.deltaTime;
-        }
-        ShiftEnable = true;
-    }
-
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (gameObject == GameObject.Find("Ship") && collision.gameObject == PlayerObject)
-    //        OnCommandPoint = true;
-    //}
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    OnCommandPoint = false;
-    //}
+   
 }
