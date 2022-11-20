@@ -6,18 +6,11 @@ public class WarningSpawn : MonoBehaviour
 {
     [SerializeField] private float x;
     [SerializeField] private float y;
-<<<<<<< Updated upstream
-    private TriggerMiniGame _triggerController;
-    private void Awake()
-    {
-        transform.Translate(x, y, 0);
-=======
     [SerializeField] private int indexOfWarning;
     [SerializeField] private GameObject _warningMiniGame;
     private TriggerMiniGame _triggerController;
     private void Awake()
     {
->>>>>>> Stashed changes
         _triggerController = GameObject.Find("TriggerController").GetComponent<TriggerMiniGame>();
     }
 
@@ -34,12 +27,7 @@ public class WarningSpawn : MonoBehaviour
         _triggerController.CountWarnings(1);
         print(_triggerController.CountWarnings());
     }
-
-<<<<<<< Updated upstream
-    private void OnDestroy()
-=======
     private void OnDisable()
->>>>>>> Stashed changes
     {
         _triggerController.CountWarnings(-1);
     }

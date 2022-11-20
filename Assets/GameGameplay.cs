@@ -106,16 +106,11 @@ public class GameGameplay : MonoBehaviour
         {
             _triggerMiniGame.CountGame(-1);
         }
-<<<<<<< Updated upstream
-
-        Destroy(GameObject.FindWithTag("MiniGame1"));
-=======
         _miniGameWindow.SetActive(false);
     }
 
     private void OnDisable()
     {
         transform.position = new Vector2(0f, 0f);
->>>>>>> Stashed changes
     }
 }

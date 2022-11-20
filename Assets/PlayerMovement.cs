@@ -18,16 +18,6 @@ public class PlayerMovement : MonoBehaviour
     // переделать вызов мини игры по нормальному
     private void Update()
     {
-<<<<<<< Updated upstream
-        if(Input.GetKeyDown(KeyCode.E) && onTriggerWarning)
-        { 
-            //Тут добавлять запуск игры
-            if(warningName == "CircleInCenter(Clone)" && _triggerControl.CountGame() == 0)
-            {
-                Instantiate<GameObject>(circleOnCenterGame);
-            }
-        }
-=======
         //if(Input.GetKeyDown(KeyCode.E) && onTriggerWarning)
         //{ 
         //    //Тут добавлять запуск игры
@@ -40,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
         //        Instantiate<GameObject>(lampButtons);
         //    }
         //}
->>>>>>> Stashed changes
     }
     void FixedUpdate()
     {
