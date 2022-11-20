@@ -7,10 +7,22 @@ public class TriggerMiniGame : MonoBehaviour
     public List<GameObject> WARNING_LIST;
     private static int COUNT_MINI_GAME;
     private static int COUNT_WARNINGS;
+<<<<<<< Updated upstream
     private void Start()
     {
         //WARNING_LIST = new List<GameObject>(Resources.LoadAll<GameObject>("Warnings"));
         //print(WARNING_LIST);
+=======
+    private List<GameObject> Warnings;
+    private Queue<GameObject> queueWarning;
+    private Queue<GameObject> queueWarningSpawned;
+
+    private void Start()
+    {
+        Warnings = new List<GameObject>(WARNING_LIST);
+        queueWarning = new Queue<GameObject>(WARNING_LIST);
+        queueWarningSpawned = new Queue<GameObject>();
+>>>>>>> Stashed changes
     }
     public int CountWarnings()
     {
@@ -32,8 +44,26 @@ public class TriggerMiniGame : MonoBehaviour
         return COUNT_MINI_GAME;
     }
 
+    public int GetWarningLength()
+    {
+        return WARNING_LIST.Count;
+    }
+
     public List<GameObject> GetWarningList()
     {
         return WARNING_LIST;
+<<<<<<< Updated upstream
+=======
+    }
+
+    public GameObject SpawningWarning(int index)
+    {
+        return WARNING_LIST[index];
+    }
+
+    public void DespawningWarning()
+    {
+        queueWarning.Enqueue(queueWarningSpawned.Dequeue());
+>>>>>>> Stashed changes
     }
 }

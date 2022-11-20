@@ -8,6 +8,9 @@ public class GameGameplay : MonoBehaviour
     [SerializeField]
      private float Timertime;
 
+    [SerializeField] private GameObject triggerWarning;
+    [SerializeField] private GameObject _miniGameWindow;
+
     [SerializeField]
     TMP_Text Text;
 
@@ -16,7 +19,7 @@ public class GameGameplay : MonoBehaviour
     private TriggerMiniGame _triggerMiniGame;
     private PlayerMovement _player;
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         ElapsedTime = 0;
         _triggerMiniGame = GameObject.Find("TriggerController").GetComponent<TriggerMiniGame>();
@@ -68,8 +71,10 @@ public class GameGameplay : MonoBehaviour
             {
                 _triggerMiniGame.CountGame(-1);
             }
-            Destroy(GameObject.Find("CircleInCenter(Clone)"));
-            Destroy(GameObject.FindWithTag("MiniGame1"));
+            //Destroy(GameObject.Find("CircleInCenter(Clone)"));
+            //GameObject.Find("CircleInCenter")
+            triggerWarning.SetActive(false);
+            _miniGameWindow.SetActive(false);
 
         }
     }
@@ -101,7 +106,16 @@ public class GameGameplay : MonoBehaviour
         {
             _triggerMiniGame.CountGame(-1);
         }
+<<<<<<< Updated upstream
 
         Destroy(GameObject.FindWithTag("MiniGame1"));
+=======
+        _miniGameWindow.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        transform.position = new Vector2(0f, 0f);
+>>>>>>> Stashed changes
     }
 }

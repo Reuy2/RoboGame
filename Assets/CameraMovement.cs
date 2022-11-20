@@ -29,7 +29,12 @@ public class CameraMovement : MonoBehaviour
         {
             return;
         }
+<<<<<<< Updated upstream
         if (Input.GetAxis("Vertical") > 0)
+=======
+
+        if(Ship.IsShipControl() == false && Input.GetKeyDown(KeyCode.LeftShift) && changeAllow == true && _playerMovement.onCommandPoint)
+>>>>>>> Stashed changes
         {
             transform.position = Vector3.Lerp(transform.position, _upperFinish, Input.GetAxis("Vertical") / _cameraSpeedUpAndDown);
         }
@@ -48,6 +53,7 @@ public class CameraMovement : MonoBehaviour
     {
         if (_timeElapsed < _camLerpDuration && !Ship.IsShipControl() && !cam_locked)
         {
+<<<<<<< Updated upstream
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, GameObject.FindWithTag("Player").transform.position.x, _timeElapsed / _camLerpDuration), Mathf.Lerp(transform.position.y, GameObject.FindWithTag("Player").transform.position.y, _timeElapsed / _camLerpDuration), Mathf.Lerp(_camStartPos, _camEndPos, _timeElapsed / _camLerpDuration));
             _timeElapsed += Time.deltaTime;
         }
@@ -56,6 +62,16 @@ public class CameraMovement : MonoBehaviour
             transform.parent = GameObject.FindWithTag("Player").transform;
             transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, GameObject.FindWithTag("Player").transform.position.y, _camEndPos);
             transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+=======
+            yield return new WaitForEndOfFrame();
+
+            float transp = Mathf.Lerp(1, 0, time / _camLerpDuration);
+            shipTransp.color = new Color(shipTransp.color.r, shipTransp.color.g, shipTransp.color.b,transp);
+            playerTransp.color = new Color(playerTransp.color.r, playerTransp.color.g, playerTransp.color.b, transp);
+
+
+            time += Time.deltaTime;
+>>>>>>> Stashed changes
         }
         if (Input.GetKey(KeyCode.LeftShift) && _timeElapsed >=3 && Player.onCommandPoint)
         {
@@ -71,7 +87,17 @@ public class CameraMovement : MonoBehaviour
         while (time < _camLerpDuration)
         {
             yield return new WaitForEndOfFrame();
+<<<<<<< Updated upstream
             transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Lerp(_camEndPos, _camStartPos, time / _camLerpDuration));
+=======
+
+            float transp = Mathf.Lerp(0, 1, time / _camLerpDuration);
+            shipTransp.color = new Color(shipTransp.color.r, shipTransp.color.g, shipTransp.color.b, transp);
+            playerTransp.color = new Color(playerTransp.color.r, playerTransp.color.g, playerTransp.color.b, transp);
+
+
+
+>>>>>>> Stashed changes
             time += Time.deltaTime;
         }
         _timeElapsed = 0;

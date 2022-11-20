@@ -22,7 +22,7 @@ public class BistrieKamniMovement : MonoBehaviour
         transform.Translate(Vector3.up * -BG_Scroller.y * 500 * Time.deltaTime * Mathf.Sqrt(MoveControl.Boost));
 
         _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        if (transform.position.x < _screenBounds.x)
+        if (transform.position.x < _screenBounds.x-20)
         {
             Destroy(this.gameObject);
         }
