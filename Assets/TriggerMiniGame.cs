@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +8,14 @@ public class TriggerMiniGame : MonoBehaviour
     private static int COUNT_MINI_GAME;
     private static int COUNT_WARNINGS;
     private List<GameObject> Warnings;
+    private Queue<GameObject> queueWarning;
+    private Queue<GameObject> queueWarningSpawned;
+
     private void Start()
     {
         Warnings = new List<GameObject>(WARNING_LIST);
+        queueWarning = new Queue<GameObject>(WARNING_LIST);
+        queueWarningSpawned = new Queue<GameObject>();
     }
     public int CountWarnings()
     {
@@ -33,18 +37,23 @@ public class TriggerMiniGame : MonoBehaviour
         return COUNT_MINI_GAME;
     }
 
+    public int GetWarningLength()
+    {
+        return WARNING_LIST.Count;
+    }
+
     public List<GameObject> GetWarningList()
     {
-        return Warnings;
+        return WARNING_LIST;
     }
 
-    public void SpawningWarning(int index)
+    public GameObject SpawningWarning(int index)
     {
-        Warnings.Remove(WARNING_LIST[index]);
+        return WARNING_LIST[index];
     }
 
-    public void DespawningWarning(int index)
+    public void DespawningWarning()
     {
-        Warnings.Add(WARNING_LIST[index]);
+        queueWarning.Enqueue(queueWarningSpawned.Dequeue());
     }
 }

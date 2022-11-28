@@ -29,27 +29,30 @@ public class CameraMovement : MonoBehaviour
 
     private void CameraMovementControl()
     {
-        if(Ship.IsShipControl() == true && Input.GetKeyDown(KeyCode.LeftShift) && changeAllow == true)
+        if (Ship.IsShipControl() == true && Input.GetKeyDown(KeyCode.LeftShift) && changeAllow == true)
         {
+            changeAllow = false;
+            print(changeAllow);
             Ship.ShipControlChangeToFalse();
             _playerMovement.MovementAllowChangeToTrue();
-            changeAllow = false;
             StartCoroutine(CamToMinDistance());
             StartCoroutine(Uncover());
             return;
         }
 
-        if(Ship.IsShipControl() == false && Input.GetKeyDown(KeyCode.LeftShift) && changeAllow == true)
+        if (Ship.IsShipControl() == false && Input.GetKeyDown(KeyCode.LeftShift) && changeAllow == true)
         {
+
+            changeAllow = false;
+            print(changeAllow);
             Ship.ShipControlChangeToTrue();
             _playerMovement.MovementAllowChangeToFalse();
-            changeAllow = false;
             StartCoroutine(CamToMaxDistance());
             StartCoroutine(Cover());
             return;
         }
     }
-    
+
     IEnumerator CamToMaxDistance(float time = 0f)
     {
         transform.parent = null;
@@ -86,17 +89,12 @@ public class CameraMovement : MonoBehaviour
         SpriteRenderer playerTransp = _player.GetComponent<SpriteRenderer>();
         while (time < _camLerpDuration)
         {
-            SpriteRenderer[] childList = _shipUncovered.GetComponentsInChildren<SpriteRenderer>();
             Color transp = shipTransp.color;
             yield return new WaitForEndOfFrame();
 
             transp.a = Mathf.Lerp(1, 0, time / _camLerpDuration);
             shipTransp.color = transp;
             playerTransp.color = transp;
-            foreach (SpriteRenderer i in childList)
-            {
-                i.color = transp;
-            }
 
             time += Time.deltaTime;
         }
@@ -108,17 +106,12 @@ public class CameraMovement : MonoBehaviour
         SpriteRenderer playerTransp = _player.GetComponent<SpriteRenderer>();
         while (time < _camLerpDuration)
         {
-            SpriteRenderer[] childList = _shipUncovered.GetComponentsInChildren<SpriteRenderer>();
             Color transp = shipTransp.color;
             yield return new WaitForEndOfFrame();
 
             transp.a = Mathf.Lerp(0, 1, time / _camLerpDuration);
             shipTransp.color = transp;
             playerTransp.color = transp;
-            foreach (SpriteRenderer i in childList)
-            {
-                i.color = transp;
-            }
 
 
             time += Time.deltaTime;

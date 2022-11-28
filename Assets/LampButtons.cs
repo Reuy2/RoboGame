@@ -7,6 +7,9 @@ using System;
 public class LampButtons : MonoBehaviour
 {
 
+    [SerializeField] private GameObject triggerWarning;
+    [SerializeField] private GameObject _miniGameWindow;
+
     int correct = 0;
 
     List<string> buttonList = new List<string>() { "Yellow", "Green", "Blue", "Red" };
@@ -30,7 +33,7 @@ public class LampButtons : MonoBehaviour
         Red = KeyCode.R
     }
 
-    void Start()
+    private void OnEnable()
     {
         trigger = GameObject.Find("TriggerController").GetComponent<TriggerMiniGame>();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -110,8 +113,7 @@ public class LampButtons : MonoBehaviour
         {
             trigger.CountGame(-1);
         }
-        Destroy(GameObject.FindGameObjectWithTag("MiniGame"));
-        Debug.Log(GameObject.Find("LampButtonsWarn(Clone)")); // Вот тут косяк какой-то, хз. Не получается удалить варнинг, (макс)ща пофикшу
-        Destroy(GameObject.Find("LampButtonsWarn(Clone)"));
+        _miniGameWindow.SetActive(false);
+        triggerWarning.SetActive(false);
     }
 }

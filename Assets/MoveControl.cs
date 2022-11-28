@@ -6,12 +6,10 @@ public class MoveControl : MonoBehaviour
 {
 
     float _angle = 0f;
-
-    GameObject PlayerObject;
-
+    float time = 0f;
+    GameObject _helthBar, PlayerObject, PlayerPref;
     Player _player;
-
-    bool ShiftEnable = true;
+    bool ShiftEnable = true; 
 
     public static bool OnCommandPoint = false;
     public static float Boost = 1;
@@ -33,17 +31,15 @@ public class MoveControl : MonoBehaviour
     void Update()
     {
         BoostControl();
-
         if (ship—ontrol)
         {
             BG_Scroller.y = Input.GetAxis("Vertical") / 100;
-            UpDownShip();
         }
         else
         {
             BG_Scroller.y = 0;
-            StraightShip();
         }
+        UpDownShip();
     }
 
     public void ShipControlChangeToTrue()
@@ -112,5 +108,16 @@ public class MoveControl : MonoBehaviour
         }
     }
 
-   
+
+
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (gameObject == GameObject.Find("Ship") && collision.gameObject == PlayerObject)
+    //        OnCommandPoint = true;
+    //}
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    OnCommandPoint = false;
+    //}
 }

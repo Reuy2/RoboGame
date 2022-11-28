@@ -8,36 +8,46 @@ public class GameGameplay : MonoBehaviour
     [SerializeField]
      private float Timertime;
 
-    [SerializeField]
-    TMP_Text Text;
+    [SerializeField] private GameObject triggerWarning;
+    [SerializeField] private GameObject _miniGameWindow;
+
+    [SerializeField] TMP_Text Text;
 
     float ElapsedTime;
 
     private TriggerMiniGame _triggerMiniGame;
     private PlayerMovement _player;
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         ElapsedTime = 0;
         _triggerMiniGame = GameObject.Find("TriggerController").GetComponent<TriggerMiniGame>();
         _player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         _player.MovementAllowChangeToFalse();
         _triggerMiniGame.CountGame(1);
+        Camera.main.transform.position = new Vector3(0f, 0f,-201.43f);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
         ElapsedTime += Time.deltaTime;
+
         TextPrint();
+
         Timer();
+
         Direction();
+
+
 
     }
 
     void TextPrint()
     {
-        if ((9 - Mathf.Ceil(ElapsedTime)) > 4)
+        if ((Timertime + 1 - Mathf.Ceil(ElapsedTime)) > 4)
         {
             Text.text = "Удерживай круг в центре еще " + (Timertime + 1 - Mathf.Ceil(ElapsedTime)) + " секунд.";
         }
@@ -61,8 +71,10 @@ public class GameGameplay : MonoBehaviour
             {
                 _triggerMiniGame.CountGame(-1);
             }
-            Destroy(GameObject.Find("CircleInCenter(Clone)"));
-            Destroy(GameObject.FindWithTag("MiniGame1"));
+            //Destroy(GameObject.Find("CircleInCenter(Clone)"));
+            //GameObject.Find("CircleInCenter")
+            triggerWarning.SetActive(false);
+            _miniGameWindow.SetActive(false);
 
         }
     }
@@ -94,6 +106,12 @@ public class GameGameplay : MonoBehaviour
         {
             _triggerMiniGame.CountGame(-1);
         }
-        Destroy(GameObject.FindWithTag("MiniGame1"));
+        _miniGameWindow.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        transform.position = new Vector2(0f, 0f);
+        Camera.main.transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, -201.43f);
     }
 }
