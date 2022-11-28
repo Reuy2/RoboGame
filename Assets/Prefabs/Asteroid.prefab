@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _xMaxSpeed: 10
+  asteroidAnim: {fileID: 8946500954414682322, guid: 5b9bc6a62e118ba4c80fd9bf38360871, type: 3}
 --- !u!60 &1722499533837488162
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     [SerializeField] private float _xMaxSpeed;
+    [SerializeField] private GameObject asteroidAnim;
     private Rigidbody2D _rb;
     private Vector2 _screenBounds;
     //float speedUp = 0;
@@ -37,10 +38,18 @@ public class Asteroid : MonoBehaviour
         if(collision.gameObject.tag.Equals("Asteroid"))
         {
             Destroy(collision.gameObject);
+            GameObject a = Instantiate(asteroidAnim);
+            a.transform.position = collision.collider.transform.position;
+            Animation anim = a.GetComponent<Animation>();
+            Destroy(a, anim.clip.length);
         }
         if (collision.gameObject.tag.Equals("Boost"))
         {
             Destroy(collision.gameObject);
+            GameObject a = Instantiate(asteroidAnim);
+            a.transform.position = collision.collider.transform.position;
+            Animation anim = a.GetComponent<Animation>();
+            Destroy(a, anim.clip.length);
         }
     }
     public void SetSpeedX(float speed)

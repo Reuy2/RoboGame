@@ -272,3 +272,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _xMaxSpeed: 100
+  asteroidAnim: {fileID: 8946500954414682322, guid: 5b9bc6a62e118ba4c80fd9bf38360871, type: 3}

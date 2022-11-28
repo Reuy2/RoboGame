@@ -8,6 +8,7 @@ public class ShipCollide : MonoBehaviour
 {
     [SerializeField] private TriggerMiniGame TriggerController;
     [SerializeField] private Transform _shipUncoveredTransform;
+    [SerializeField] private GameObject asteroidAnim;
     [SerializeField] GameObject Text;
     private List<GameObject> _warningList;
     private int countWarningAfterLimit = 0;
@@ -40,7 +41,7 @@ public class ShipCollide : MonoBehaviour
 
     private void Update()
     {
-        if(deathState == 1)
+        if (deathState == 1)
         {
             Text.SetActive(true);
             return;
@@ -54,14 +55,20 @@ public class ShipCollide : MonoBehaviour
             return;
         if (collision.gameObject.tag == "MiniGamePlayer")
             return;
-
-        Destroy(collision.gameObject);
+        if (collision.gameObject.tag == "Asteroid")
+        {
+            Destroy(collision.gameObject);
+            GameObject a = Instantiate(asteroidAnim);
+            a.transform.transform.position = collision.collider.transform.position;
+            Animation anim = a.GetComponent<Animation>();
+            Destroy(a, anim.clip.length);
+        }
 
         if (collision.gameObject.tag == "Asteroid")
         {
-            foreach(GameObject warning in _warningList)
+            foreach (GameObject warning in _warningList)
             {
-                if(warning.activeSelf == false)
+                if (warning.activeSelf == false)
                 {
                     deathState = 0;
                     warning.SetActive(true);
@@ -73,7 +80,7 @@ public class ShipCollide : MonoBehaviour
 
             //тут добавить предупреждение о проигрыше
             //и тут же добавить проигрыш от большого количества варнингов
-            
+
         }
     }
 }
