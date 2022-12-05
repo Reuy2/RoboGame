@@ -4,7 +4,11 @@ using UnityEngine;
 public class AsteroidSpawn : MonoBehaviour
 {
     //[SerializeField] public Camera CurrentCamera = Camera.main;
-    [SerializeField] private GameObject _asteroid;
+    [SerializeField] private GameObject _asteroidBlue;
+    [SerializeField] private GameObject _asteroidBig;
+    [SerializeField] private GameObject _asteroidLong;
+    [SerializeField] private GameObject _asteroidCommon;
+    GameObject[] _asteroid;
     [SerializeField] private float _respawnTime = 0.7f;
 
 
@@ -12,6 +16,7 @@ public class AsteroidSpawn : MonoBehaviour
     void Start()
     {
         StartCoroutine(asteroidWave());
+        _asteroid = new GameObject[] { _asteroidBlue, _asteroidBig, _asteroidLong, _asteroidCommon };
     }
 
     void Update()
@@ -19,7 +24,7 @@ public class AsteroidSpawn : MonoBehaviour
     }
     private void spawnEnemy()
     {
-        GameObject a = Instantiate(_asteroid);
+        GameObject a = Instantiate(_asteroid[Random.Range(0,_asteroid.Length)]);
         a.transform.position = new Vector2(75, Random.Range(-40, +40));
     }
 

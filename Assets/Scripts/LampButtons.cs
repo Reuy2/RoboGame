@@ -35,6 +35,7 @@ public class LampButtons : MonoBehaviour
 
     private void OnEnable()
     {
+        correct = 0;
         trigger = GameObject.Find("TriggerController").GetComponent<TriggerMiniGame>();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         player.MovementAllowChangeToFalse();
@@ -98,9 +99,9 @@ public class LampButtons : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
                 var a = (Btn)Enum.Parse(typeof(Btn), buttonList[i]);
-                GameObject.Find(a.ToString()).GetComponent<SpriteRenderer>().color = colorList[(int)a];
+                GameObject.Find(a.ToString()).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);                                //.GetComponent<SpriteRenderer>().color = colorList[(int)a];
                 yield return new WaitForSeconds(1f);
-                GameObject.Find(a.ToString()).GetComponent<SpriteRenderer>().color = Color.black;
+                GameObject.Find(a.ToString()).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);                                               //.GetComponent<SpriteRenderer>().color = Color.black;
             }
         }
     }

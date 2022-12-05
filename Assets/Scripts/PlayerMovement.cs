@@ -10,26 +10,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject circleOnCenterGame;
     [SerializeField] private TriggerMiniGame _triggerControl;
 
+    [SerializeField] Animator animPlayer;
+
     private bool isMovementAllow = false;
     private string warningName = null;
 
     public bool onCommandPoint = true;
     public bool onTriggerWarning = false;
-    // переделать вызов мини игры по нормальному
+
     private void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.E) && onTriggerWarning)
-        //{ 
-        //    //Тут добавлять запуск игры
-        //    if (warningName == "CircleInCenter" && _triggerControl.CountGame() == 0)
-        //    {
-        //        Instantiate<GameObject>(circleOnCenterGame,);
-        //    }
-        //    if (warningName == "LampButtonsWarn(Clone)" && _triggerControl.CountGame() == 0)
-        //    {
-        //        Instantiate<GameObject>(lampButtons);
-        //    }
-        //}
+        DirectionCapture();
     }
     void FixedUpdate()
     {
@@ -43,9 +34,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    private void DirectionCapture()
+    {
+        if (Input.GetAxis("Horizontal") < 1 && Input.GetAxis("Horizontal") > -1 && Input.GetAxis("Vertical") < 1 && Input.GetAxis("Vertical") > -1)
+        {
+            animPlayer.SetInteger("direction", 0);
+        }
+
+        if (Input.GetAxis("Horizontal") < 0 && Input.GetAxis("Vertical") < 1 && Input.GetAxis("Vertical") > -1)
+        {
+            animPlayer.SetInteger("direction", 2);
+        }
+
+        if (Input.GetAxis("Horizontal") > 0 && Input.GetAxis("Vertical") < 1 && Input.GetAxis("Vertical") > -1)
+        {
+            animPlayer.SetInteger("direction", 3);
+        }
+
+        if ( Input.GetAxis("Vertical") > 0)
+        {
+            animPlayer.SetInteger("direction", 4);
+        }
+
+        if (Input.GetAxis("Vertical") < 0)
+        {
+            animPlayer.SetInteger("direction", 1);
+        }
+    }
+
     private void MovementStop()
     {
         _rb.velocity = new Vector2(0f, 0f);
+        animPlayer.SetInteger("direction",0);
     }
 
     private void MovementLogic()
