@@ -26,7 +26,10 @@ public class MoveControl : MonoBehaviour
     [SerializeField]
     Transform Ship;
 
-
+    private void Awake()
+    {
+        ship—ontrol = true;
+    }
 
     void Update()
     {

@@ -508,6 +508,7 @@ MonoBehaviour:
   circleOnCenterGame: {fileID: 4805812697134823097, guid: fc330bf35e0bc5644834d4d9ee8e5b8a, type: 3}
   _triggerControl: {fileID: 1376309827}
   animPlayer: {fileID: 65896607}
+  deadZone: 0.1
   onCommandPoint: 0
   onTriggerWarning: 0
 --- !u!95 &65896607
@@ -814,6 +815,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 65896606}
   _player: {fileID: 65896601}
   _shipUncovered: {fileID: 886701945}
+  maxOffset: 0
 --- !u!114 &132746270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,10 +1761,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c63111c58f9104b8461aacef9298b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ship: {fileID: 0}
-  _playerMovement: {fileID: 0}
-  _player: {fileID: 0}
-  _shipUncovered: {fileID: 0}
+  Ship: {fileID: 2051817545}
+  _playerMovement: {fileID: 65896606}
+  _player: {fileID: 65896601}
+  _shipUncovered: {fileID: 886701945}
+  maxOffset: 100
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2847,6 +2850,7 @@ GameObject:
   - component: {fileID: 1330823650}
   - component: {fileID: 1330823649}
   - component: {fileID: 1330823651}
+  - component: {fileID: 1330823652}
   m_Layer: 0
   m_Name: MarsAndEarth
   m_TagString: MarsAndEarth
@@ -2871,7 +2875,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1376, y: 0}
+  m_AnchoredPosition: {x: 1314, y: 0}
   m_SizeDelta: {x: 312.5763, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1330823647
@@ -2992,6 +2996,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a3c20f374e994f4a833a69fd9067e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1330823652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330823645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0a9b53fbe5fe348a4ea57d52be80d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1335604365
@@ -3204,7 +3220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b7e247b75689c4c9ec63fce418eaa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartScore: 100
+  startScore: 100
   countdownText: {fileID: 1449044483}
 --- !u!1 &1376309826
 GameObject:
@@ -4063,6 +4079,7 @@ MonoBehaviour:
   _shipUncoveredTransform: {fileID: 886701946}
   asteroidAnim: {fileID: 8946500954414682322, guid: 5b9bc6a62e118ba4c80fd9bf38360871, type: 3}
   Text: {fileID: 418387421}
+  score: {fileID: 1375708831}
 --- !u!212 &2051817547
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4150,6 +4167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoostTimer: {fileID: 229903499}
+  Score: {fileID: 1375708831}
 --- !u!68 &2051817552
 EdgeCollider2D:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] GameObject _player;
     [SerializeField] GameObject _shipUncovered;
 
+    [SerializeField] float maxOffset;
+
     Vector3 _upperFinish = new Vector3(0f, -4f, -685.8f);
     Vector3 _lowerFinish = new Vector3(0f, 4f, -685.8f);
     Vector3 _zeroFinish = new Vector3(0f, 0f, -685.8f);
@@ -24,7 +26,43 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Ship.IsShipControl() == false)
+        {
+            transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, transform.position.z);
+        }
         CameraMovementControl();
+    }
+
+    private void FixedUpdate()
+    {
+        if(Ship.IsShipControl() == true)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                if (transform.position.y > -2)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 0.01f, transform.position.z);
+                }
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                if (transform.position.y < 2)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y + 0.01f, transform.position.z);
+                }
+            }
+            /*else
+            {
+                if(transform.position.y > 0)
+                {
+                     transform.position = new Vector3(transform.position.x, transform.position.y - 0.02f, transform.position.z);
+                }
+                if(transform.position.y < 0)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y + 0.02f, transform.position.z);
+                }
+            }*/
+        }
     }
 
     private void CameraMovementControl()
@@ -55,7 +93,7 @@ public class CameraMovement : MonoBehaviour
 
     IEnumerator CamToMaxDistance(float time = 0f)
     {
-        transform.parent = null;
+        //transform.parent = null;
         while (time < _camLerpDuration)
         {
             yield return new WaitForEndOfFrame();
@@ -69,7 +107,7 @@ public class CameraMovement : MonoBehaviour
 
     IEnumerator CamToMinDistance(float time = 0f)
     {
-        transform.parent = _player.transform;
+        //transform.parent = _player.transform;
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         while (time < _camLerpDuration)
         {

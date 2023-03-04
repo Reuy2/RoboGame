@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Animator animPlayer;
 
+    [SerializeField] float deadZone = 0.1f;
+
     private bool isMovementAllow = false;
     private string warningName = null;
 
@@ -20,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        float angle = Vector2.Angle(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), new Vector2(0, 1));
+        Console.WriteLine(angle);
         DirectionCapture();
     }
     void FixedUpdate()
@@ -37,7 +41,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void DirectionCapture()
     {
-        if (Input.GetAxis("Horizontal") < 1 && Input.GetAxis("Horizontal") > -1 && Input.GetAxis("Vertical") < 1 && Input.GetAxis("Vertical") > -1)
+        float angle;
+        if (Input.GetAxis("Horizontal") <0 && Math.Abs(Input.GetAxis("Horizontal")) + Math.Abs(Input.GetAxis("Vertical")) > deadZone)
+        {
+            angle = Vector2.Angle(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), new Vector2(0, 1));
+            transform.rotation = Quaternion.Euler(0, 0, angle+180);
+            animPlayer.SetBool("move", true);
+        }
+        else if(Input.GetAxis("Horizontal") >= 0 && Math.Abs(Input.GetAxis("Horizontal"))+ Math.Abs(Input.GetAxis("Vertical")) > deadZone)
+        {
+            angle = Vector2.Angle(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), new Vector2(0, -1));
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+            animPlayer.SetBool("move", true);
+        }
+        else if(Math.Abs(Input.GetAxis("Horizontal")) + Math.Abs(Input.GetAxis("Vertical")) <= deadZone)
+        {
+            animPlayer.SetBool("move", false);
+        }
+
+
+        /*if (Input.GetAxis("Horizontal") < 1 && Input.GetAxis("Horizontal") > -1 && Input.GetAxis("Vertical") < 1 && Input.GetAxis("Vertical") > -1)
         {
             animPlayer.SetInteger("direction", 0);
         }
@@ -61,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
         {
             animPlayer.SetInteger("direction", 1);
         }
+        */
+
     }
 
     private void MovementStop()

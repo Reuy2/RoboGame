@@ -12,6 +12,7 @@ public class ShipCollide : MonoBehaviour
     [SerializeField] GameObject Text;
     private List<GameObject> _warningList;
     private int countWarningAfterLimit = 0;
+    [SerializeField] public ScoreCount score;
 
     private int deathState = 0;
 
@@ -61,6 +62,7 @@ public class ShipCollide : MonoBehaviour
             GameObject a = Instantiate(asteroidAnim);
             a.transform.transform.position = collision.collider.transform.position;
             Animation anim = a.GetComponent<Animation>();
+            score.StartScore -= 10;
             Destroy(a, anim.clip.length);
         }
 

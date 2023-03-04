@@ -14,7 +14,7 @@ public class WinScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x < -1300)
+        if(this.transform.localPosition.x < -1300)
         {
             SceneManager.LoadScene(2);
         }

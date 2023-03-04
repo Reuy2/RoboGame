@@ -7,11 +7,15 @@ using TMPro;
 public class ScoreCount : MonoBehaviour
 {
     [SerializeField]
-    float StartScore = 100;
+    float startScore = 100;
 
     [SerializeField]
     TMP_Text countdownText;
-
+    public float StartScore
+    {
+        get { return startScore; }
+        set { startScore = value; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,10 @@ public class ScoreCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartScore -= Time.deltaTime;
-        countdownText.text = Mathf.Ceil(StartScore).ToString();
+        if(startScore > 0)
+        {
+            startScore -= Time.deltaTime / 10;
+            countdownText.text = Mathf.Ceil(startScore).ToString();
+        }
     }
 }

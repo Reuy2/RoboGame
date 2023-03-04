@@ -6,6 +6,7 @@ public class BoostCollision : MonoBehaviour
 {
 
     public CooldownBoostTimer BoostTimer;
+    [SerializeField] public ScoreCount Score;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class BoostCollision : MonoBehaviour
         if (collision.gameObject.tag.Equals("Boost"))
         {
             BoostTimer.SetScale(20);
+            Score.StartScore += 20;
             Destroy(collision.gameObject);
         }
     }
