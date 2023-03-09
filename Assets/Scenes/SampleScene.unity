@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe3b7cf3fd79c4845b3b1269d1a3603b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.1
+  _speed: 2
   _rb: {fileID: 65896604}
   circleOnCenterGame: {fileID: 4805812697134823097, guid: fc330bf35e0bc5644834d4d9ee8e5b8a, type: 3}
   _triggerControl: {fileID: 1376309827}
@@ -726,6 +726,8 @@ GameObject:
   - component: {fileID: 132746270}
   - component: {fileID: 132746271}
   - component: {fileID: 132746272}
+  - component: {fileID: 132746273}
+  - component: {fileID: 132746274}
   m_Layer: 0
   m_Name: ShipCamera
   m_TagString: MainCamera
@@ -815,6 +817,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 65896606}
   _player: {fileID: 65896601}
   _shipUncovered: {fileID: 886701945}
+  asteroidSpawn: {fileID: 132746270}
   maxOffset: 0
 --- !u!114 &132746270
 MonoBehaviour:
@@ -861,6 +864,118 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capsuleBoost: {fileID: 1804747936530292966, guid: c360a20f8fc377f4087938f80d8247d0, type: 3}
   _respawnTime: 6
+--- !u!82 &132746273
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132746265}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 137
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &132746274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132746265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ef4ed35ee08364f975a5f80b21a18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 831f9be8a3a98e24d86dec76416f23df, type: 3}
+  - {fileID: 8300000, guid: 7dc706e19c1e33f4897847f1558c8b93, type: 3}
+  source: {fileID: 132746273}
 --- !u!1 &159755947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,9 +1235,9 @@ RectTransform:
   m_Father: {fileID: 1335604369}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1275, y: -30}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 98, y: -27}
   m_SizeDelta: {x: 174.65002, y: 11.977997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &229903499
@@ -1765,6 +1880,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 65896606}
   _player: {fileID: 65896601}
   _shipUncovered: {fileID: 886701945}
+  asteroidSpawn: {fileID: 0}
   maxOffset: 100
 --- !u!114 &519420034
 MonoBehaviour:
@@ -2948,7 +3064,7 @@ SpriteRenderer:
   m_Size: {x: 312.5763, y: 125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1330823649
@@ -3151,10 +3267,10 @@ RectTransform:
   m_Father: {fileID: 1335604369}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1245, y: -55}
-  m_SizeDelta: {x: 7.229, y: 2.9498}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -149, y: -69}
+  m_SizeDelta: {x: 7.229004, y: 2.9498}
   m_Pivot: {x: 0.5005713, y: 0.5}
 --- !u!212 &1375708830
 SpriteRenderer:
@@ -3356,10 +3472,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: "\u041E\u0447\u043A\u0438"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

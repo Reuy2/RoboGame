@@ -27,7 +27,7 @@ public class boostCapsuleSpawn : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(_respawnTime);
+            yield return new WaitForSeconds(_respawnTime*(2-DataHolder.Dificulty));
             spawnEnemy();
         }
     }

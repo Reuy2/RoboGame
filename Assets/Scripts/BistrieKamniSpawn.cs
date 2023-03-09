@@ -28,7 +28,7 @@ public class BistrieKamniSpawn : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(_respawnTime);
+            yield return new WaitForSeconds(_respawnTime*DataHolder.Dificulty);
             spawnEnemy();
         }
     }

@@ -9,6 +9,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] PlayerMovement _playerMovement;
     [SerializeField] GameObject _player;
     [SerializeField] GameObject _shipUncovered;
+    [SerializeField] AsteroidSpawn asteroidSpawn;
 
     [SerializeField] float maxOffset;
 
@@ -73,6 +74,7 @@ public class CameraMovement : MonoBehaviour
             print(changeAllow);
             Ship.ShipControlChangeToFalse();
             _playerMovement.MovementAllowChangeToTrue();
+            asteroidSpawn.RespawnTime += 10;
             StartCoroutine(CamToMinDistance());
             StartCoroutine(Uncover());
             return;
@@ -85,6 +87,7 @@ public class CameraMovement : MonoBehaviour
             print(changeAllow);
             Ship.ShipControlChangeToTrue();
             _playerMovement.MovementAllowChangeToFalse();
+            asteroidSpawn.RespawnTime -= 10;
             StartCoroutine(CamToMaxDistance());
             StartCoroutine(Cover());
             return;

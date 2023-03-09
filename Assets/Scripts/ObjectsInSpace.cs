@@ -6,7 +6,7 @@ public class ObjectsInSpace : MonoBehaviour
 {
     [SerializeField] List<GameObject> ObjectPrefab;
     GameObject _gameObject;
-    int i = -1;
+    int i = 0;
     float _timeElapsed = 0;
     void Start()
     {
@@ -17,8 +17,8 @@ public class ObjectsInSpace : MonoBehaviour
     {
         while (MoveControl.ship—ontrol && i < ObjectPrefab.Count) 
         {
-            i++;
             SpawnObj();
+            i++;
             yield return new WaitForSeconds(30f);
         }
     }

@@ -24,7 +24,10 @@ public class PlayerMovement : MonoBehaviour
     {
         float angle = Vector2.Angle(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), new Vector2(0, 1));
         Console.WriteLine(angle);
-        DirectionCapture();
+        if (MovementAllow())
+        {
+            DirectionCapture();
+        }
     }
     void FixedUpdate()
     {
@@ -91,22 +94,23 @@ public class PlayerMovement : MonoBehaviour
     private void MovementStop()
     {
         _rb.velocity = new Vector2(0f, 0f);
-        animPlayer.SetInteger("direction",0);
     }
 
     private void MovementLogic()
     {
-        _rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        _rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"))*_speed;
     }
 
     public void MovementAllowChangeToFalse()
     {
         isMovementAllow = false;
+        animPlayer.enabled = false;
     }
 
     public void MovementAllowChangeToTrue()
     {
         isMovementAllow = true;
+        animPlayer.enabled = true;
     }
 
     public bool MovementAllow()

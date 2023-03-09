@@ -66,3 +66,6 @@ TagManager:
   - name: MiniGame
     uniqueID: 112957961
     locked: 0
+  - name: Menu
+    uniqueID: 2926964935
+    locked: 0

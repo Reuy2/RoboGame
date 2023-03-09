@@ -35,7 +35,7 @@ public class ShipCollide : MonoBehaviour
 
         if (deathState == 2)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
 
         }
     }

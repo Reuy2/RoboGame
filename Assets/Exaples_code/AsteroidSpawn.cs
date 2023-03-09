@@ -11,7 +11,11 @@ public class AsteroidSpawn : MonoBehaviour
     GameObject[] _asteroid;
     [SerializeField] private float _respawnTime = 0.7f;
 
-
+    public float RespawnTime
+    {
+        get { return _respawnTime; }
+        set { _respawnTime = value; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +36,7 @@ public class AsteroidSpawn : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(_respawnTime);
+            yield return new WaitForSeconds(_respawnTime*DataHolder.Dificulty);
             spawnEnemy();
         }
     }

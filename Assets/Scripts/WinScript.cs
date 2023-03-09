@@ -16,7 +16,7 @@ public class WinScript : MonoBehaviour
     {
         if(this.transform.localPosition.x < -1300)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
     }
 }
